@@ -68,6 +68,8 @@ spec:
           - "-localip"
           - "{{ .Values.config.localDns }}"
         {{- end }}
+          - "-dns.port"
+          - {{ quote .Values.config.dnsPort }}
           - "-conf"
           - "/etc/Corefile"
           - "-upstreamsvc"
@@ -80,10 +82,10 @@ spec:
           {{- toYaml .Values.securityContext | nindent 10 }}
         {{- end }}
         ports:
-        - containerPort: 53
+        - containerPort: {{ .Values.config.dnsPort }}
           name: dns
           protocol: UDP
-        - containerPort: 53
+        - containerPort: {{ .Values.config.dnsPort }}
           name: dns-tcp
           protocol: TCP
         - containerPort: 9253
