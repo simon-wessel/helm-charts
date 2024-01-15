@@ -8,11 +8,11 @@ metadata:
 spec:
   ports:
   - name: dns
-    port: {{ .Values.config.dnsPort }}
+    port: 53
     protocol: UDP
     targetPort: {{ .Values.config.dnsPort }}
   - name: dns-tcp
-    port: {{ .Values.config.dnsPort }}
+    port: 53
     protocol: TCP
     targetPort: {{ .Values.config.dnsPort }}
   selector:
